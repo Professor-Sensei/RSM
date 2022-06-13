@@ -4,7 +4,7 @@ const app = express();
 // const db = require('../database/index.js');
 const axios = require('axios');
 
-app.use(express.static(path.join(__dirname + '/../public')));
+app.use(express.static(path.join(__dirname + '/../dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -19,11 +19,8 @@ const config = {
 };
 
 app.get('/breweries', (req, res) => {
-  const data = req.query;
-  console.log(data);
-
   config.data = JSON.stringify({
-    by_city: 'las vegas',
+    by_city: req.query.city,
   });
 
   axios(config)
@@ -47,7 +44,7 @@ app.get('/breweries', (req, res) => {
 //   });
 // });
 
-const port = 8080;
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
