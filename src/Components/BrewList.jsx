@@ -1,10 +1,14 @@
-import { useContext } from 'react';
-import { AppContext } from '../App';
+import React from 'react';
+import Brewery from './Brewery';
 
-const { breweries } = useContext(AppContext);
-
-const BrewList = () => {
-  return <></>;
+const BrewList = (props) => {
+  return (
+    <div>
+      {props.breweries.map((item, i) => {
+        return <Brewery key={i} item={item} />;
+      })}
+    </div>
+  );
 };
 
 export default BrewList;

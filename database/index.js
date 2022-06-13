@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const options = { useNewUrlParser: true };
 
-mongoose.connect('mongodb://localhost/fetcher', options);
+mongoose.connect('mongodb://localhost/breweries', options);
 
 // const db = mongoose.connection;
 
@@ -43,12 +43,17 @@ const save = (data) => {
       state: data.state,
       zip: data.postal_code,
     },
-    url: data.url,
+    url: data.website_url,
     location: {
       lat: data.latitude,
       lng: data.longitude,
     },
     phone: data.phone,
+  });
+  brewery.save((err) => {
+    if (err) {
+      console.log('error saving brewery');
+    }
   });
 };
 

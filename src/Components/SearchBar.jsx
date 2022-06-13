@@ -13,7 +13,6 @@ const SearchBar = () => {
   useEffect(() => {
     if (search?.length >= 3) {
       setCity(search);
-      console.log(search);
     }
   }, [search]);
 
