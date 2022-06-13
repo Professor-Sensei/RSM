@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { AppContext } from '../App';
 
@@ -13,6 +13,7 @@ const SearchBar = () => {
   useEffect(() => {
     if (search?.length >= 3) {
       setCity(search);
+      console.log(search);
     }
   }, [search]);
 

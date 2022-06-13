@@ -9,21 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //GET Data from OpenBreweryDB API
-const config = {
-  method: 'get',
-  url: 'https://api.openbrewerydb.org/breweries',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  data: '',
-};
-
 app.get('/breweries', (req, res) => {
-  config.data = JSON.stringify({
-    by_city: req.query.city,
-  });
-
-  axios(config)
+  axios({
+    method: 'get',
+    url: `https://api.openbrewerydb.org/breweries?by_city=${req.query.city}`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
     .then((response) => {
       res.status(200).send(JSON.stringify(response.data));
     })

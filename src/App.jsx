@@ -1,5 +1,5 @@
 import './App.css';
-import { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from './Components/SearchBar';
 
@@ -10,12 +10,12 @@ const App = () => {
   const [breweries, setBreweries] = useState(null);
 
   useEffect(() => {
-    console.log('city: ', city);
     axios
       .get('/breweries', { params: { city: city } })
       .then((response) => {
+        console.log(city);
+        console.log(response.data);
         setBreweries(response.data);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -27,7 +27,6 @@ const App = () => {
       <div className='App'>
         <h1>Brewery Lister</h1>
         <SearchBar />
-        <BrewList />
       </div>
     </AppContext.Provider>
   );
