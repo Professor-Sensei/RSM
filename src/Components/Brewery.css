@@ -1,0 +1,9 @@
+#brew-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brewery {
+  display: contents;
+}
